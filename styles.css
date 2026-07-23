@@ -162,6 +162,26 @@ p{margin:0 0 16px;color:var(--ink-soft);text-align:justify;hyphens:auto;}
   text-decoration:none;border-bottom:1px solid var(--oxblood);font-size:16px;
 }
 .social-links a:hover{color:var(--oxblood-deep);}
+.inline-link{color:var(--oxblood);text-decoration:none;border-bottom:1px solid var(--oxblood);}
+.inline-link:hover{color:var(--oxblood-deep);}
+
+/* ---- reading log ---- */
+.book-list{list-style:none;margin:0 0 4px;padding:0;}
+.book-row{
+  display:flex;justify-content:space-between;align-items:baseline;gap:14px;
+  padding:8px 0;border-bottom:1px solid var(--hairline);
+}
+.book-list .book-row:last-child{border-bottom:none;}
+.book-info{flex:1;}
+.book-title{font-style:italic;color:var(--ink);}
+.book-author{color:var(--ink-soft);}
+.book-star{color:var(--oxblood);font-size:0.8em;}
+.book-spiral{
+  display:inline-block;width:12px;height:12px;vertical-align:middle;
+  margin-left:2px;transform:translateY(-1px);
+  background:no-repeat center / contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M 12.0,12.0 L 12.17,12.04 L 12.32,12.14 L 12.43,12.31 L 12.48,12.52 L 12.45,12.76 L 12.34,13.0 L 12.15,13.22 L 11.88,13.4 L 11.54,13.52 L 11.15,13.54 L 10.74,13.47 L 10.32,13.29 L 9.93,12.99 L 9.6,12.58 L 9.36,12.08 L 9.22,11.51 L 9.22,10.88 L 9.37,10.23 L 9.66,9.6 L 10.11,9.02 L 10.7,8.53 L 11.42,8.17 L 12.23,7.95 L 13.1,7.92 L 14.0,8.07 L 14.88,8.43 L 15.69,8.99 L 16.38,9.73 L 16.93,10.64 L 17.28,11.67 L 17.41,12.79 L 17.29,13.94 L 16.93,15.09 L 16.32,16.16 L 15.47,17.1 L 14.41,17.87 L 13.18,18.41 L 11.83,18.7 L 10.42,18.69 L 9.0,18.38 L 7.64,17.76 L 6.42,16.86 L 5.38,15.69 L 4.6,14.3 L 4.1,12.75 L 3.94,11.09 L 4.14,9.39 L 4.69,7.74 L 5.59,6.21 L 6.82,4.87' fill='none' stroke='%234E1D15' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+.book-date{font-size:13px;color:var(--ink-soft);white-space:nowrap;flex-shrink:0;}
 
 /* ---- book feature ---- */
 .book-card{
@@ -331,6 +351,13 @@ footer{padding:40px 0 60px;text-align:center;font-size:14px;color:var(--ink-soft
   .post-title, .entry-title{font-size:18px;}
   .entry-blurb{font-size:17px;}
   .post-sub{font-size:15px;}
+
+  /* reading log: let each row wrap onto two lines (title/author, then
+     month below) rather than squeezing everything onto one on narrow
+     screens */
+  .book-row{flex-wrap:wrap;row-gap:2px;}
+  .book-title,.book-author{font-size:17px;}
+  .book-date{font-size:12px;}
 
   /* individual post pages */
   .post-header h1{font-size:25px !important;}
