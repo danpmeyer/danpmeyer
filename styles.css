@@ -34,6 +34,14 @@
 
 /* ---- reset / base ---- */
 *{box-sizing:border-box;}
+html{
+  -webkit-text-size-adjust:100%;text-size-adjust:100%;
+  /* Real mobile browsers (Safari/Firefox) auto-boost text size for
+     readability on narrow screens — invisible when testing by resizing
+     a desktop window, but it breaks any layout math tied to font-size
+     (like the drop cap's line-height calculation) on an actual phone.
+     Locking this to 100% makes rendering match what desktop shows. */
+}
 body{
   margin:0;
   background:var(--parchment);
