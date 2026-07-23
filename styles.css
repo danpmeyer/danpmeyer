@@ -319,7 +319,7 @@ footer{padding:40px 0 60px;text-align:center;font-size:14px;color:var(--ink-soft
   .book-card{flex-direction:column;align-items:center;gap:16px;padding:20px;text-align:center;}
   .book-covers{justify-content:center;}
   .cover{width:68px;height:102px;}
-  .book-copy h2{font-size:21px;}
+  .book-copy h2{font-size:21px;text-align:left;}
   .book-copy p{font-size:17px;text-align:left;}
   .book-links{text-align:left;}
   .book-links a{display:inline-block;margin:4px 16px 0 0;}
