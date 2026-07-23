@@ -62,6 +62,12 @@ nav a{
 nav a.active{color:var(--oxblood);border-bottom-color:var(--oxblood);}
 nav a:hover{color:var(--oxblood-deep);}
 
+/* mobile nav toggle: invisible/inert on desktop, only activates in the
+   mobile media query below */
+.nav-toggle-checkbox{display:none;}
+.nav-toggle-label{display:none;}
+.hamburger-line{display:block;}
+
 /* ---- meander rule (signature divider) ---- */
 /* seamless step-fret: period matches tile width so pattern reads as one
    continuous band rather than repeating with visible seams */
@@ -93,17 +99,22 @@ p{margin:0 0 16px;color:var(--ink-soft);text-align:justify;hyphens:auto;}
 .lede{font-size:20px;color:var(--ink);}
 .dropcap{
   float:left;
-  width:88px;height:88px;
+  width:99px;height:99px; /* = 3 × lede line-height (20px × 1.65), so
+                              text wraps exactly 3 full lines alongside
+                              it with no partial-line gap underneath */
   margin:0 12px 0 0;
   display:flex;align-items:center;justify-content:center;
   overflow:hidden; /* hard clamp: guarantees no leftover space regardless
                        of font metrics, even if the embedded font fails
                        to load and a fallback serif is used instead */
   font-family:'Goudy Initial', serif;
-  font-size:100px;line-height:1;
+  font-size:114px;line-height:1;
   color:var(--oxblood);
 }
 .social-links{margin-top:20px;}
+.post-body .dropcap{
+  width:94px;height:94px;font-size:108px; /* = 3 × post-body line-height (19px × 1.65) */
+}
 .social-links a{
   font-family:'EB Garamond',serif;font-style:italic;color:var(--oxblood);
   text-decoration:none;border-bottom:1px solid var(--oxblood);font-size:16px;
@@ -130,20 +141,17 @@ p{margin:0 0 16px;color:var(--ink-soft);text-align:justify;hyphens:auto;}
 }
 
 /* ---- notebook list ---- */
-.post{
-  display:flex;justify-content:space-between;align-items:flex-start;
-  padding:18px 0;border-bottom:1px solid var(--hairline);
-}
+.post{padding:18px 0;border-bottom:1px solid var(--hairline);}
 .post-list .post:last-child{border-bottom:none;}
-.post-title-group a{font-family:'EB Garamond',serif;font-size:19px;color:var(--ink);text-decoration:none;}
-.post-title-group a:hover{color:var(--oxblood);}
-.post-sub{font-size:15px;font-style:italic;color:var(--ink-soft);margin:2px 0 0;}
+.post-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;}
+.post-title{font-family:'EB Garamond',serif;font-size:19px;color:var(--ink);text-decoration:none;}
+.post-title:hover{color:var(--oxblood);}
+.post-sub{font-size:15px;font-style:italic;color:var(--ink-soft);margin:4px 0 0;}
 .post-sub.pending{color:var(--ink-soft);opacity:0.6;}
-.post-blurb{font-size:17px;font-style:normal;color:var(--ink-soft);margin:8px 0 10px;line-height:1.55;max-width:600px;}
 .continue-link{font-style:italic;color:var(--oxblood);text-decoration:none;font-size:15px;}
-.post .date{
+.post .date, .entry .date{
   font-size:13px;color:var(--oxblood-deep);white-space:nowrap;padding:3px 10px;
-  background:var(--oxblood-tint);border-radius:2px;margin-top:2px;
+  background:var(--oxblood-tint);border-radius:2px;
 }
 .view-all{display:inline-block;margin-top:20px;font-style:italic;color:var(--oxblood);text-decoration:none;font-size:16px;}
 
@@ -152,10 +160,6 @@ p{margin:0 0 16px;color:var(--ink-soft);text-align:justify;hyphens:auto;}
 .entry-row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;}
 .entry-title{font-family:'EB Garamond',serif;font-size:22px;color:var(--ink);text-decoration:none;}
 .entry-title:hover{color:var(--oxblood);}
-.entry .date{
-  font-size:13px;color:var(--oxblood-deep);white-space:nowrap;padding:3px 10px;
-  background:var(--oxblood-tint);border-radius:2px;
-}
 .entry-blurb{font-size:17px;font-style:normal;color:var(--ink-soft);margin:10px 0 10px;line-height:1.55;}
 
 /* ---- individual post ---- */
@@ -224,45 +228,75 @@ footer{padding:40px 0 60px;text-align:center;font-size:14px;color:var(--ink-soft
 
   .wrap{padding:0 18px;}
 
-  /* header/nav */
-  header.top{padding:20px 0 14px;flex-wrap:wrap;gap:8px;}
-  .wordmark{font-size:19px;}
-  nav a{margin-left:14px;font-size:15px;}
+  /* header/nav: collapse into a hamburger toggle */
+  header.top{padding:20px 0 14px;position:relative;flex-wrap:wrap;}
+  .wordmark{font-size:20px;}
+  .nav-toggle-label{
+    display:block;width:26px;height:19px;position:relative;
+    cursor:pointer;user-select:none;flex-shrink:0;
+  }
+  .nav-toggle-label .hamburger-line{
+    position:absolute;left:0;width:100%;height:2px;
+    background:var(--oxblood);border-radius:1px;
+    transition:transform 0.28s ease, opacity 0.2s ease;
+  }
+  .nav-toggle-label .hamburger-line:nth-child(1){top:0;}
+  .nav-toggle-label .hamburger-line:nth-child(2){top:8px;}
+  .nav-toggle-label .hamburger-line:nth-child(3){top:16px;}
+  /* open state: top/bottom bars rotate into an X, middle bar fades out */
+  .nav-toggle-checkbox:checked ~ .nav-toggle-label .hamburger-line:nth-child(1){
+    top:8px;transform:rotate(45deg);
+  }
+  .nav-toggle-checkbox:checked ~ .nav-toggle-label .hamburger-line:nth-child(2){
+    opacity:0;transform:scaleX(0);
+  }
+  .nav-toggle-checkbox:checked ~ .nav-toggle-label .hamburger-line:nth-child(3){
+    top:8px;transform:rotate(-45deg);
+  }
+  header.top nav{
+    display:none;flex-basis:100%;order:3;
+    flex-direction:column;align-items:flex-start;gap:2px;
+    margin-top:14px;padding-top:14px;border-top:1px solid var(--hairline);
+  }
+  .nav-toggle-checkbox:checked ~ nav{display:flex;}
+  nav a{margin-left:0;font-size:18px;padding:6px 0;}
 
-  /* type scale */
-  h1{font-size:28px !important;}
-  h2.section-head{font-size:21px;}
-  .subtitle{font-size:16px;margin-bottom:20px;}
-  .lede{font-size:17px;}
-  .dropcap{width:64px;height:64px;font-size:72px;margin:0 10px 0 0;}
-  p{font-size:16px;}
+  /* type scale: bumped up ~2px across the board for mobile legibility */
+  h1{font-size:30px !important;}
+  h2.section-head{font-size:23px;}
+  .subtitle{font-size:18px;margin-bottom:20px;}
+  .lede{font-size:19px;}
+  .dropcap{width:94px;height:94px;font-size:108px;margin:0 10px 0 0;} /* = 3 × mobile lede line-height (19px × 1.65) */
+  .post-body .dropcap{width:89px;height:89px;font-size:102px;} /* = 3 × mobile post-body line-height (18px × 1.65) */
+  p{font-size:18px;}
   section{padding:34px 0;}
 
-  /* book feature: stack instead of side-by-side */
-  .book-card{flex-direction:column;gap:16px;padding:18px;}
-  .book-covers{align-self:flex-start;}
-  .cover{width:64px;height:96px;}
-  .book-copy h2{font-size:20px;}
-  .book-copy p{font-size:16px;}
+  /* book feature: stack and center instead of the awkward
+     left-aligned covers sitting above left-aligned copy */
+  .book-card{flex-direction:column;align-items:center;gap:16px;padding:20px;text-align:center;}
+  .book-covers{justify-content:center;}
+  .cover{width:68px;height:102px;}
+  .book-copy h2{font-size:21px;}
+  .book-copy p{font-size:17px;text-align:left;}
+  .book-links{text-align:left;}
   .book-links a{display:inline-block;margin:4px 16px 0 0;}
 
-  /* homepage notebook preview + full notebook index rows:
-     let title and date badge wrap onto their own lines instead
-     of squeezing the title */
-  .post, .entry-row{flex-wrap:wrap;row-gap:6px;}
-  .post-title-group a, .entry-title{font-size:17px;}
-  .post .date, .entry .date{margin-top:0;}
-  .entry-blurb, .post-blurb{font-size:16px;}
-  .post-sub{font-size:14px;}
+  /* homepage notes preview + full notebook index: title+date always
+     share one row; subtitle/blurb is always the row underneath, so the
+     date never ends up jumping below the subtitle */
+  .entry-row{flex-wrap:wrap;row-gap:6px;}
+  .post-title, .entry-title{font-size:18px;}
+  .entry-blurb{font-size:17px;}
+  .post-sub{font-size:15px;}
 
   /* individual post pages */
-  .post-header h1{font-size:24px !important;}
-  .post-body{font-size:16px;}
-  .post-body h2{font-size:19px;margin:30px 0 12px;}
-  .post-body blockquote{padding:12px 16px;font-size:16px;}
+  .post-header h1{font-size:25px !important;}
+  .post-body{font-size:18px;}
+  .post-body h2{font-size:20px;margin:30px 0 12px;}
+  .post-body blockquote{padding:12px 16px;font-size:17px;}
 
   /* footnote tooltip: narrower so it can't overflow the viewport */
-  .fn .fn-tip{width:220px;max-width:78vw;font-size:13px;padding:9px 11px;}
+  .fn .fn-tip{width:220px;max-width:78vw;font-size:14px;padding:9px 11px;}
 
   /* meander rule: slightly smaller tile reads cleaner at narrow widths */
   .meander-rule{background-size:13px 13px;}
