@@ -88,6 +88,41 @@ nav a:hover{color:var(--oxblood-deep);}
   height:10px;background-size:10px 10px;
 }
 
+/* ---- fleuron rule (alternate divider — printer's-flower row) ---- */
+.fleuron-rule{
+  height:14px;width:100%;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='20' viewBox='0 0 40 20'%3E%3Cg fill='%236E2A1F'%3E%3Ccircle cx='20' cy='6' r='3'/%3E%3Ccircle cx='20' cy='14' r='3'/%3E%3Ccircle cx='15' cy='10' r='3'/%3E%3Ccircle cx='25' cy='10' r='3'/%3E%3Ccircle cx='20' cy='10' r='2.2'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat:repeat-x;background-position:left center;background-size:22px 12px;
+}
+.fleuron-rule.tight{
+  height:9px;background-size:15px 8px;
+}
+
+/* ---- lozenge rule (alternate divider — diamond chain) ---- */
+.lozenge-rule{
+  height:12px;width:100%;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='12' viewBox='0 0 24 12'%3E%3Cline x1='0' y1='6' x2='24' y2='6' stroke='%236E2A1F' stroke-width='1'/%3E%3Cpolygon points='12,2 16,6 12,10 8,6' fill='%236E2A1F'/%3E%3C/svg%3E");
+  background-repeat:repeat-x;background-position:left center;background-size:24px 12px;
+}
+.lozenge-rule.tight{
+  height:8px;background-size:16px 8px;
+}
+
+/* ---- ornament rule (alternate divider — plain hairline, single
+   centered fleuron, not tiled) ---- */
+.ornament-rule{
+  height:18px;width:100%;
+  background:
+    center / 24px 24px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cg fill='%236E2A1F'%3E%3Ccircle cx='12' cy='5' r='3.2'/%3E%3Ccircle cx='12' cy='19' r='3.2'/%3E%3Ccircle cx='5' cy='12' r='3.2'/%3E%3Ccircle cx='19' cy='12' r='3.2'/%3E%3Ccircle cx='12' cy='12' r='2.4'/%3E%3C/g%3E%3C/svg%3E"),
+    center / 100% 1px no-repeat linear-gradient(var(--oxblood), var(--oxblood));
+}
+.ornament-rule.tight{
+  height:14px;
+  background:
+    center / 16px 16px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cg fill='%236E2A1F'%3E%3Ccircle cx='12' cy='5' r='3.2'/%3E%3Ccircle cx='12' cy='19' r='3.2'/%3E%3Ccircle cx='5' cy='12' r='3.2'/%3E%3Ccircle cx='19' cy='12' r='3.2'/%3E%3Ccircle cx='12' cy='12' r='2.4'/%3E%3C/g%3E%3C/svg%3E"),
+    center / 100% 1px no-repeat linear-gradient(var(--oxblood), var(--oxblood));
+}
+
 /* ---- sections ---- */
 section{padding:48px 0;}
 
@@ -97,8 +132,9 @@ h1{
 }
 h2.section-head{
   font-family:'Marcellus',serif;font-size:26px;font-weight:400;
-  margin:0 0 18px;
+  margin:0 0 18px;color:var(--oxblood-deep);
 }
+h2.section-head::before{content:"\00b6\0020";color:var(--oxblood);font-family:'EB Garamond',serif;}
 .subtitle{
   font-family:'EB Garamond',serif;font-style:italic;color:var(--ink-soft);
   font-size:19px;margin:0 0 26px;
@@ -136,7 +172,7 @@ p{margin:0 0 16px;color:var(--ink-soft);text-align:justify;hyphens:auto;}
 .book-covers{display:flex;gap:8px;flex-shrink:0;}
 .cover{
   width:76px;height:114px;border-radius:1px;
-  object-fit:cover;border:1px solid var(--ink-soft);
+  object-fit:cover;border:1px solid var(--oxblood);
 }
 .book-copy h2{font-family:'Marcellus',serif;font-size:23px;font-weight:400;margin:0 0 8px;}
 .book-copy p{font-size:17px;margin:0 0 14px;}
@@ -183,7 +219,8 @@ p{margin:0 0 16px;color:var(--ink-soft);text-align:justify;hyphens:auto;}
 }
 
 /* ---- post prose ---- */
-.post-body h2{font-family:'Marcellus',serif;font-size:22px;font-weight:400;margin:38px 0 14px;color:var(--ink);}
+.post-body h2{font-family:'Marcellus',serif;font-size:22px;font-weight:400;margin:38px 0 14px;color:var(--oxblood-deep);}
+.post-body h2::before{content:"\00b6\0020";color:var(--oxblood);font-family:'EB Garamond',serif;}
 .post-body .dateline{font-size:15px;font-style:italic;color:var(--ink-soft);margin-bottom:28px;}
 .post-body blockquote{
   margin:0 0 20px;padding:14px 22px;background:var(--parchment-2);
@@ -307,5 +344,11 @@ footer{padding:40px 0 60px;text-align:center;font-size:14px;color:var(--ink-soft
   /* meander rule: slightly smaller tile reads cleaner at narrow widths */
   .meander-rule{background-size:13px 13px;}
   .meander-rule.tight{background-size:9px 9px;}
+  .fleuron-rule{background-size:18px 10px;}
+  .fleuron-rule.tight{background-size:12px 7px;}
+  .lozenge-rule{background-size:19px 10px;}
+  .lozenge-rule.tight{background-size:13px 7px;}
+  .ornament-rule{background-size:20px 20px, 100% 1px;}
+  .ornament-rule.tight{background-size:14px 14px, 100% 1px;}
 }
 
