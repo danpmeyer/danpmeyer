@@ -107,21 +107,19 @@ p{margin:0 0 16px;color:var(--ink-soft);text-align:justify;hyphens:auto;}
 .lede{font-size:20px;color:var(--ink);}
 .dropcap{
   float:left;
-  width:99px;height:99px; /* = 3 × lede line-height (20px × 1.65), so
-                              text wraps exactly 3 full lines alongside
-                              it with no partial-line gap underneath */
+  width:99px;height:99px;
   margin:0 12px 0 0;
-  display:flex;align-items:center;justify-content:center;
   overflow:hidden; /* hard clamp: guarantees no leftover space regardless
                        of font metrics, even if the embedded font fails
                        to load and a fallback serif is used instead */
+  text-align:center;
   font-family:'Goudy Initial', serif;
-  font-size:114px;line-height:1;
+  font-size:114px;line-height:99px;
   color:var(--oxblood);
 }
 .social-links{margin-top:20px;}
 .post-body .dropcap{
-  width:94px;height:94px;font-size:108px; /* = 3 × post-body line-height (19px × 1.65) */
+  width:94px;height:94px;font-size:108px;line-height:94px;
 }
 .social-links a{
   font-family:'EB Garamond',serif;font-style:italic;color:var(--oxblood);
@@ -274,8 +272,8 @@ footer{padding:40px 0 60px;text-align:center;font-size:14px;color:var(--ink-soft
   h2.section-head{font-size:23px;}
   .subtitle{font-size:18px;margin-bottom:20px;}
   .lede{font-size:19px;}
-  .dropcap{width:94px;height:94px;font-size:108px;margin:0 10px 0 0;} /* = 3 × mobile lede line-height (19px × 1.65) */
-  .post-body .dropcap{width:89px;height:89px;font-size:102px;} /* = 3 × mobile post-body line-height (18px × 1.65) */
+  .dropcap{width:94px;height:94px;font-size:108px;line-height:94px;margin:0 10px 0 0;} /* = 3 × mobile lede line-height (19px × 1.65) */
+  .post-body .dropcap{width:89px;height:89px;font-size:102px;line-height:89px;} /* = 3 × mobile post-body line-height (18px × 1.65) */
   p{font-size:18px;}
   section{padding:34px 0;}
 
