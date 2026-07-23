@@ -1,0 +1,271 @@
+/* ---- tokens ---- */
+:root{
+  --parchment:#F2EBDC;
+  --parchment-2:#EAE1CC;
+  --ink:#241F1A;
+  --ink-soft:#4A423A;
+  --oxblood:#6E2A1F;
+  --oxblood-deep:#4E1D15;
+  --oxblood-tint:#F1DCD3;
+  --hairline: rgba(36,31,26,0.18);
+}
+
+/* ---- embedded fonts ---- */
+@font-face{
+  font-family:'Marcellus';
+  src:url('fonts/Marcellus-Regular.ttf') format('truetype');
+  font-weight:400;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:'EB Garamond';
+  src:url('fonts/EBGaramond-Regular.ttf') format('truetype');
+  font-weight:400;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:'EB Garamond';
+  src:url('fonts/EBGaramond-Italic.ttf') format('truetype');
+  font-weight:400;font-style:italic;font-display:swap;
+}
+@font-face{
+  font-family:'Goudy Initial';
+  src:url('fonts/GoudyIni.ttf') format('truetype');
+  font-weight:400;font-style:normal;font-display:swap;
+}
+
+/* ---- reset / base ---- */
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--parchment);
+  color:var(--ink);
+  font-family:'EB Garamond', serif;
+  font-size:19px;
+  line-height:1.65;
+}
+.wrap{max-width:760px;margin:0 auto;padding:0 32px;}
+a{color:inherit;}
+
+/* ---- header ---- */
+header.top{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:26px 0 20px;
+}
+.wordmark{
+  font-family:'Marcellus',serif;font-size:22px;letter-spacing:0.03em;
+  color:var(--oxblood-deep);text-decoration:none;
+}
+nav a{
+  font-family:'EB Garamond',serif;font-style:italic;font-size:17px;
+  color:var(--ink-soft);text-decoration:none;margin-left:26px;
+  padding-bottom:4px;border-bottom:2px solid transparent;
+}
+nav a.active{color:var(--oxblood);border-bottom-color:var(--oxblood);}
+nav a:hover{color:var(--oxblood-deep);}
+
+/* ---- meander rule (signature divider) ---- */
+/* seamless step-fret: period matches tile width so pattern reads as one
+   continuous band rather than repeating with visible seams */
+.meander-rule{
+  height:16px;width:100%;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath d='M0,4 H8 V12 H16 V4' fill='none' stroke='%236E2A1F' stroke-width='2' stroke-linejoin='miter' stroke-linecap='square'/%3E%3C/svg%3E");
+  background-repeat:repeat-x;background-position:left center;background-size:16px 16px;
+}
+.meander-rule.tight{
+  height:10px;background-size:10px 10px;
+}
+
+/* ---- sections ---- */
+section{padding:48px 0;}
+
+h1{
+  font-family:'Marcellus',serif;font-size:38px;font-weight:400;
+  letter-spacing:0.01em;margin:0 0 6px;color:var(--ink);
+}
+h2.section-head{
+  font-family:'Marcellus',serif;font-size:26px;font-weight:400;
+  margin:0 0 18px;
+}
+.subtitle{
+  font-family:'EB Garamond',serif;font-style:italic;color:var(--ink-soft);
+  font-size:19px;margin:0 0 26px;
+}
+p{margin:0 0 16px;color:var(--ink-soft);text-align:justify;hyphens:auto;}
+.lede{font-size:20px;color:var(--ink);}
+.dropcap{
+  float:left;
+  width:88px;height:88px;
+  margin:0 12px 0 0;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden; /* hard clamp: guarantees no leftover space regardless
+                       of font metrics, even if the embedded font fails
+                       to load and a fallback serif is used instead */
+  font-family:'Goudy Initial', serif;
+  font-size:100px;line-height:1;
+  color:var(--oxblood);
+}
+.social-links{margin-top:20px;}
+.social-links a{
+  font-family:'EB Garamond',serif;font-style:italic;color:var(--oxblood);
+  text-decoration:none;border-bottom:1px solid var(--oxblood);font-size:16px;
+}
+.social-links a:hover{color:var(--oxblood-deep);}
+
+/* ---- book feature ---- */
+.book-card{
+  display:flex;gap:26px;background:var(--parchment-2);
+  border:1px solid var(--hairline);border-radius:2px;padding:26px;
+  margin-top:8px;
+}
+.book-covers{display:flex;gap:8px;flex-shrink:0;}
+.cover{
+  width:76px;height:114px;border-radius:1px;
+  object-fit:cover;border:1px solid var(--ink-soft);
+}
+.book-copy h2{font-family:'Marcellus',serif;font-size:23px;font-weight:400;margin:0 0 8px;}
+.book-copy p{font-size:17px;margin:0 0 14px;}
+.book-links a{
+  font-family:'EB Garamond',serif;font-style:italic;color:var(--oxblood);
+  text-decoration:none;border-bottom:1px solid var(--oxblood);
+  font-size:16px;margin-right:20px;
+}
+
+/* ---- notebook list ---- */
+.post{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  padding:18px 0;border-bottom:1px solid var(--hairline);
+}
+.post-list .post:last-child{border-bottom:none;}
+.post-title-group a{font-family:'EB Garamond',serif;font-size:19px;color:var(--ink);text-decoration:none;}
+.post-title-group a:hover{color:var(--oxblood);}
+.post-sub{font-size:15px;font-style:italic;color:var(--ink-soft);margin:2px 0 0;}
+.post-sub.pending{color:var(--ink-soft);opacity:0.6;}
+.post-blurb{font-size:17px;font-style:normal;color:var(--ink-soft);margin:8px 0 10px;line-height:1.55;max-width:600px;}
+.continue-link{font-style:italic;color:var(--oxblood);text-decoration:none;font-size:15px;}
+.post .date{
+  font-size:13px;color:var(--oxblood-deep);white-space:nowrap;padding:3px 10px;
+  background:var(--oxblood-tint);border-radius:2px;margin-top:2px;
+}
+.view-all{display:inline-block;margin-top:20px;font-style:italic;color:var(--oxblood);text-decoration:none;font-size:16px;}
+
+/* ---- notebook index: full entries with blurb ---- */
+.entry{padding:26px 0;}
+.entry-row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;}
+.entry-title{font-family:'EB Garamond',serif;font-size:22px;color:var(--ink);text-decoration:none;}
+.entry-title:hover{color:var(--oxblood);}
+.entry .date{
+  font-size:13px;color:var(--oxblood-deep);white-space:nowrap;padding:3px 10px;
+  background:var(--oxblood-tint);border-radius:2px;
+}
+.entry-blurb{font-size:17px;font-style:normal;color:var(--ink-soft);margin:10px 0 10px;line-height:1.55;}
+
+/* ---- individual post ---- */
+.post-header{padding-bottom:0;}
+.post-eyebrow{font-size:14px;color:var(--oxblood-deep);margin-bottom:10px;}
+.post-body{font-size:19px;}
+.post-body p{color:var(--ink-soft);}
+.post-stub{
+  font-style:italic;color:var(--ink-soft);opacity:0.7;
+  border:1px dashed var(--hairline);padding:18px;border-radius:2px;
+}
+.back-link{
+  display:inline-block;margin-top:36px;font-style:italic;color:var(--oxblood);
+  text-decoration:none;font-size:16px;
+}
+
+/* ---- post prose ---- */
+.post-body h2{font-family:'Marcellus',serif;font-size:22px;font-weight:400;margin:38px 0 14px;color:var(--ink);}
+.post-body .dateline{font-size:15px;font-style:italic;color:var(--ink-soft);margin-bottom:28px;}
+.post-body blockquote{
+  margin:0 0 20px;padding:14px 22px;background:var(--parchment-2);
+  border-left:3px solid var(--oxblood);font-size:18px;
+}
+.post-body blockquote p{margin-bottom:0;text-align:left;font-style:normal;}
+.post-body blockquote cite{
+  display:block;font-style:normal;font-size:15px;color:var(--ink-soft);margin-top:8px;text-align:right;
+}
+.post-body figure{margin:28px 0;text-align:center;}
+.post-body figure img{max-width:100%;border:1px solid var(--hairline);}
+.post-body figcaption{font-size:14px;font-style:italic;color:var(--ink-soft);margin-top:8px;text-align:center;}
+
+/* footnote markers: superscript, linked, hover tooltip */
+.fn{position:relative;font-style:normal;}
+.fn a{
+  color:var(--oxblood);text-decoration:none;font-size:0.68em;
+  vertical-align:super;line-height:0;padding:0 1px;
+}
+.fn a:hover{text-decoration:underline;}
+.fn .fn-tip{
+  display:none;position:absolute;bottom:135%;left:50%;transform:translateX(-50%);
+  width:280px;max-width:75vw;background:var(--parchment-2);border:1px solid var(--oxblood);
+  color:var(--ink-soft);font-size:14px;font-style:normal;text-align:left;line-height:1.45;
+  padding:10px 13px;border-radius:3px;box-shadow:0 3px 10px rgba(36,31,26,0.18);z-index:30;
+}
+.fn:hover .fn-tip{display:block;}
+
+/* footnotes / bibliography lists */
+.footnotes, .bibliography{
+  font-size:16px;color:var(--ink-soft);
+}
+.footnotes{padding-left:0;}
+.footnotes li{margin-bottom:12px;padding-left:6px;text-align:left;}
+.footnotes li::marker{color:var(--oxblood-deep);font-family:'Marcellus',serif;}
+.fn-back{color:var(--oxblood);text-decoration:none;margin-left:6px;}
+.bibliography{list-style:none;margin:0;padding:0;}
+.bibliography li{margin-bottom:10px;text-align:left;padding-left:1.6em;text-indent:-1.6em;}
+
+/* ---- footer ---- */
+footer{padding:40px 0 60px;text-align:center;font-size:14px;color:var(--ink-soft);}
+
+/* ==========================================================
+   Mobile (≤640px) — desktop rules above are untouched;
+   everything below only kicks in on narrow viewports.
+   ========================================================== */
+@media (max-width: 640px){
+
+  .wrap{padding:0 18px;}
+
+  /* header/nav */
+  header.top{padding:20px 0 14px;flex-wrap:wrap;gap:8px;}
+  .wordmark{font-size:19px;}
+  nav a{margin-left:14px;font-size:15px;}
+
+  /* type scale */
+  h1{font-size:28px !important;}
+  h2.section-head{font-size:21px;}
+  .subtitle{font-size:16px;margin-bottom:20px;}
+  .lede{font-size:17px;}
+  .dropcap{width:64px;height:64px;font-size:72px;margin:0 10px 0 0;}
+  p{font-size:16px;}
+  section{padding:34px 0;}
+
+  /* book feature: stack instead of side-by-side */
+  .book-card{flex-direction:column;gap:16px;padding:18px;}
+  .book-covers{align-self:flex-start;}
+  .cover{width:64px;height:96px;}
+  .book-copy h2{font-size:20px;}
+  .book-copy p{font-size:16px;}
+  .book-links a{display:inline-block;margin:4px 16px 0 0;}
+
+  /* homepage notebook preview + full notebook index rows:
+     let title and date badge wrap onto their own lines instead
+     of squeezing the title */
+  .post, .entry-row{flex-wrap:wrap;row-gap:6px;}
+  .post-title-group a, .entry-title{font-size:17px;}
+  .post .date, .entry .date{margin-top:0;}
+  .entry-blurb, .post-blurb{font-size:16px;}
+  .post-sub{font-size:14px;}
+
+  /* individual post pages */
+  .post-header h1{font-size:24px !important;}
+  .post-body{font-size:16px;}
+  .post-body h2{font-size:19px;margin:30px 0 12px;}
+  .post-body blockquote{padding:12px 16px;font-size:16px;}
+
+  /* footnote tooltip: narrower so it can't overflow the viewport */
+  .fn .fn-tip{width:220px;max-width:78vw;font-size:13px;padding:9px 11px;}
+
+  /* meander rule: slightly smaller tile reads cleaner at narrow widths */
+  .meander-rule{background-size:13px 13px;}
+  .meander-rule.tight{background-size:9px 9px;}
+}
+
